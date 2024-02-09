@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap");
+
+
+
+form input {
+  outline: none;
+  border: none;
+  width: 30rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+}
+
+form button {
+  color: white;
+  background: #ff9900;
+  outline: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

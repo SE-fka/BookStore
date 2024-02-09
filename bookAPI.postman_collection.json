@@ -1,0 +1,101 @@
+{
+	"info": {
+		"_postman_id": "ff220568-e29f-45d3-a473-3b575bc97a4e",
+		"name": "bookAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32826653"
+	},
+	"item": [
+		{
+			"name": "get Allbook list",
+			"item": [
+				{
+					"name": "http://localhost:3001/api/book/list",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "get OneBook",
+			"item": [
+				{
+					"name": "http://localhost:3001/api/book/search?title=Android",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "searchBook",
+			"item": [
+				{
+					"name": "http://localhost:3001/api/book/search?title=Android",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Add Order",
+			"item": [
+				{
+					"name": "http://localhost:3001/api/book/order/add",
+					"request": {
+						"method": "POST",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "get Allorder",
+			"item": [
+				{
+					"name": "http://localhost:3001/api/book/order/all",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "getSingleorder",
+			"item": [
+				{
+					"name": "http://localhost:3001/api/book/order/6",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "deleteOrder",
+			"item": [
+				{
+					"name": "http://localhost:3001/api/book/order/delete/6",
+					"request": {
+						"method": "DELETE",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

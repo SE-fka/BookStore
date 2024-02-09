@@ -18,9 +18,6 @@ const Product = ({ product }) => {
   const [addCart, setAddCart] = useState([]);
   const [getCart, setFechCart] = useState([]);
 
-  useEffect(() => {
-    fetchCart();
-  }, []);
 
   const fetchCart = async (book_id) => { 
     try {

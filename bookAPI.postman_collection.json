@@ -23,7 +23,7 @@
 			"name": "get OneBook",
 			"item": [
 				{
-					"name": "http://localhost:3001/api/book/search?title=Android",
+					"name": "http://localhost:3001/api/book/6",
 					"request": {
 						"method": "GET",
 						"header": []

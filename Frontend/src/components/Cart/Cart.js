@@ -46,10 +46,10 @@ const Cart = () => {
     <Box m="3%">
 
        <Button
-        style={{position: 'absolute', right: '20%', textDecoration: 'none', color:'red'}}
+        style={{position: 'absolute', right: '25%', textDecoration: 'none', color:'red'}}
           variant="contained"
           className={classes.button}  
-          onClick={() => { if (window.confirm('❌ Are you sure you want to delete cart?')) deleteItem(`${cart.order_id}`)}}>
+          onClick={() =>  deleteItem(`${cart.order_id}`)}>
           <b> DELETE CART</b>
         </Button>
         <div >

@@ -1,84 +1,101 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Container, Typography, Button, Box, Card } from '@material-ui/core';
-import useStyles from './styles';
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  CardActions,
+  Typography,
+  Button,
+  CardActionArea,
+} from "@material-ui/core";
+import { AddShoppingCart } from "@material-ui/icons";
+import { Link } from "react-router-dom";
+import useStyles from "./styles";
 
-const Cart = () => {
-  const classes = useStyles();
+const Product = ({ product }) => {
+  const [addCart, setAddCart] = useState([]);
+  const [getCart, setFechCart] = useState([]);
 
-  const [carts, setAddCart] = useState([]);
-  useEffect(() => {
-    fetchCart();
-  }, []);
-
-  const fetchCart = async () => { 
+  const fetchCart = async (book_id) => { 
     try {
-      const response = await axios.get('http://localhost:3001/api/book/order/all');
-      setAddCart(response.data);
+      const { data } = await axios.get(`http://localhost:3001/api/book/${book_id}`);
+      setFechCart(data);
+  
+      await fetch('http://localhost:3001/api/book/order/add', {
+        method: 'POST',
+        body: JSON.stringify({
+          title: data.title,
+          writer: data.writer,
+          image: data.image,
+          price: data.price,
+          tag: data.tag,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((response) => response.json())
+        .then((responseData) => {
+          setAddCart((data) => [responseData, ...data]);
+          toast.success("Add Cart Successful");
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
     } catch (error) {
       console.log(error);
     }
-  };
 
-  const deleteItem = async (order_id) => {
-    try {
-      await axios.delete(`http://localhost:3001/api/book/order/delete/${order_id}`);
-      fetchCart();
-    } catch (error) {
-      console.log('Error deleting cart:', error);
-    }
   };
-  const cardstyle={display: 'flex', margin: '2%'}
-
+  
+  const classes = useStyles();
   return (
-    <Container>
-      <div className={classes.toolbar} />
-      <Typography className={classes.title} variant="h5" gutterBottom><b>Your Shopping Cart</b></Typography>
-      <hr/>
-      {carts.map((cart) => (
+    <Card className={classes.root}>
+      <Link to={`product-view/${product.book_id}`}>
+        <CardActionArea>
+          <CardMedia
+            className={classes.media}
+            image={product.image}
+            title={product.title}
+          />
+        </CardActionArea>
+      </Link>
+      <CardContent>
+        <div className={classes.cardContent}>
+          <p className={classes.cardContentName} style={{color: 'blue'}}> 
+          {product.title}</p>
+        </div>
+        <div className={classes.cardContent}>
+        <Typography>
+            Author: <b> {product.writer} </b>
+          </Typography>
+        </div>
+        <div className={classes.cardContent}>
+        <Typography>
+            Catagory: <b>{product.tag}</b>
+          </Typography>
+        </div>
+        <div className={classes.cardContent}>
+          <p className={classes.cardContentPrice}>
+            <b>$ {product.price}</b>
+          </p>
+        </div>
        
-    <Card style={cardstyle}>
-    <Box m="1%">
-    <img alt={cart.title} src={cart.image} /> 
-    </Box>
-    <Box m="3%">
-
-       <Button
-        style={{position: 'absolute', right: '25%', textDecoration: 'none', color:'red'}}
+      </CardContent>
+      <CardActions disableSpacing className={classes.cardActions}>
+        <Button
           variant="contained"
-          className={classes.button}  
-          onClick={() => deleteItem(`${cart.order_id}`)}>
-          <b> DELETE CART</b>
+          className={classes.button}
+          endIcon={<AddShoppingCart />}
+        onClick={() => fetchCart(`${product.book_id}`)}  
+        >
+          <b>ADD TO CART</b>
         </Button>
-        <div >
-        <Typography>
-             <h4 style={{color:'blue'}}> <b>{cart.title}</b> </h4>
-          </Typography>
-        </div>
-        <div >
-        <Typography>
-           <p>Author:  <b>{cart.writer}</b></p> 
-          </Typography>
-        </div>
-        <div >
-        <Typography>
-           <p> Catagory: <b>{cart.tag}</b> </p> 
-          </Typography>
-        </div>
-        <br />
-        <div >
-        <Typography>
-        <p> price: <b style={{color:'red'}}>$ {cart.price} </b></p>
-          </Typography> 
-        </div>
+      </CardActions>
+    </Card>
 
-    </Box>
-   </Card>
-
-    )) }
-    
-    </Container>
   );
 };
 
-export default Cart;
+export default Product;

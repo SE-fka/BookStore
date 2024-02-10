@@ -24,7 +24,6 @@ const Cart = () => {
   const deleteItem = async (order_id) => {
     try {
       await axios.delete(`http://localhost:3001/api/book/order/delete/${order_id}`);
-      toast.success('Cart deleted successfully');
       fetchCart();
     } catch (error) {
       console.log('Error deleting cart:', error);

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Container, Typography, Button, Box, Card } from '@material-ui/core';
-import { ToastContainer, toast } from 'react-toastify';
 import useStyles from './styles';
 
 const Cart = () => {
@@ -48,7 +47,7 @@ const Cart = () => {
         style={{position: 'absolute', right: '25%', textDecoration: 'none', color:'red'}}
           variant="contained"
           className={classes.button}  
-          onClick={() =>  deleteItem(`${cart.order_id}`)}>
+          onClick={() => deleteItem(`${cart.order_id}`)}>
           <b> DELETE CART</b>
         </Button>
         <div >
@@ -77,18 +76,7 @@ const Cart = () => {
    </Card>
 
     )) }
-    <ToastContainer
-    position="top-right"
-    autoClose={5000}
-    hideProgressBar={false}
-    newestOnTop={false}
-    closeOnClick
-    rtl={false}
-    pauseOnFocusLoss
-    draggable
-     pauseOnHover
-     theme="light" />
-    <ToastContainer />
+    
     </Container>
   );
 };

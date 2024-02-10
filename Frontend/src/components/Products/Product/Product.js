@@ -40,7 +40,6 @@ const Product = ({ product }) => {
         .then((response) => response.json())
         .then((responseData) => {
           setAddCart((data) => [responseData, ...data]);
-          toast.success("Add Cart Successful");
         })
         .catch((err) => {
           console.log(err.message);

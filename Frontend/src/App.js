@@ -28,39 +28,29 @@ const App = () => {
     setProducts(data);
   };
 
-  const fetchCart = async (book_id) => { 
-    const response = await axios.get(`http://localhost:3001/api/book/${book_id}`);
-    setCart(response.data);
+  const fetchCart = async () => { 
+  
   };
 
   const handleAddToCart = async (productId, quantity) => {
-    const item = await axios.post('http://localhost:3001/api/book/order/add', productId, quantity); 
-
-    setCart(item.cart);
+   
   };
 
   useEffect(() => {
     fetchProducts();
-    fetchCart();
   }, []);
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
   const handleUpdateCartQty = async (lineItemId, quantity) => {
-    const response = await axios.post('http://localhost:3001/api/book/order/add');
 
-    setCart(response.cart);
   };
   const handleRemoveFromCart = async (lineItemId) => {
-    const response = await axios.post('http://localhost:3001/api/book/order/add');
-
-    setCart(response.cart);
+ 
   };
 
   const handleEmptyCart = async () => {
-    const response = await axios.post('http://localhost:3001/api/book/order/add');
-
-    setCart(response.cart);
+   
   }; 
   return (
     <div>
